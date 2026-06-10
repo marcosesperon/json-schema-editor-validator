@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Claude Code (configuración local del IDE asistente)
+.claude/
+
+# Datos internos de LIBRA — no se publican
+tools/menu.json
+tools/data.json
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*~
+
+# Python (helper en tools/)
+__pycache__/
+*.pyc
+*.pyo

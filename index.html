@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title data-i18n="app_title">JSON Schema Editor & Validator | ME</title>
+<meta name="author" content="Marcos Esperón" />
+<meta name="twitter:creator" content="@marcosesperon" />
+<link rel="author" href="https://github.com/marcosesperon" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <h1>⚡ <span data-i18n="app_title">JSON Schema Editor & Validator | ME</span></h1>
+  <button id="btnNew" class="ghost" data-i18n="btn_new">Nuevo</button>
+  <button id="btnImport" data-i18n="btn_import">Importar</button>
+  <button id="btnExport" data-i18n="btn_export">Exportar</button>
+  <button id="btnInfer" data-i18n="btn_infer">Inferir desde JSON</button>
+  <button id="btnFontDec" class="icon ghost" data-i18n-title="font_dec_title" title="A−">A−</button>
+  <button id="btnFontInc" class="icon ghost" data-i18n-title="font_inc_title" title="A+">A+</button>
+  <button id="btnUndo" class="icon ghost" data-i18n-title="btn_undo_title" disabled>↶</button>
+  <button id="btnRedo" class="icon ghost" data-i18n-title="btn_redo_title" disabled>↷</button>
+  <button id="btnHelp" class="icon ghost" data-i18n-title="help_title">?</button>
+  <span class="spacer"></span>
+  <a id="bmcLink" class="bmc-link" href="https://buymeacoffee.com/marcosesperon" target="_blank" rel="noopener noreferrer" data-i18n="bmc_label">Hacer donación</a>
+  <button id="statusPill" class="status-pill activate">Activar validación</button>
+  <select id="localeSelect" class="locale-select" data-i18n-title="locale_label" aria-label="Language"></select>
+</header>
+
+<main>
+  <section class="pane" id="treePane">
+    <div class="pane-header">
+      <span data-i18n="visual_editor">Editor visual</span>
+      <span class="hint" data-i18n="visual_hint">— Edita propiedades, tipos y restricciones</span>
+      <span class="spacer" style="flex:1"></span>
+      <label class="compact-toggle" data-i18n-title="compact_mode_hint">
+        <input type="checkbox" id="compactToggle" />
+        <span data-i18n="compact_mode">Compacto</span>
+      </label>
+      <button id="btnToggleAll" class="icon ghost"></button>
+    </div>
+    <div class="pane-body" id="treeBody"></div>
+  </section>
+
+  <div class="splitter" id="splitter"></div>
+
+  <section class="pane" id="sourcePane">
+    <div class="pane-header">
+      <span data-i18n="json_schema_pane">JSON Schema</span>
+      <span class="hint" data-i18n="source_hint">— Fuente editable</span>
+      <span class="spacer" style="flex:1"></span>
+      <button id="btnFormat" class="icon ghost" data-i18n="btn_format">Formatear</button>
+      <button id="btnMinify" class="icon ghost" data-i18n="btn_minify">Minificar</button>
+      <button id="btnBase64" class="icon ghost" data-i18n="btn_base64">Base64</button>
+      <button id="btnCopy" class="icon ghost" data-i18n="btn_copy">Copiar</button>
+    </div>
+    <div class="pane-body">
+      <textarea id="sourceEditor" spellcheck="false"></textarea>
+    </div>
+  </section>
+</main>
+
+<div id="validationPanel">
+  <div class="panel-header" id="validatePanelHeader">
+    <span class="title">▲ <span data-i18n="validate_panel_title">Validar JSON contra el schema</span></span>
+    <span class="spacer" style="flex:1"></span>
+    <span id="validationStatus" class="status-pill warn" data-i18n="untested">Sin probar</span>
+  </div>
+  <div class="panel-body">
+    <div>
+      <div class="pane-header"><span data-i18n="test_json">JSON de prueba</span></div>
+      <textarea id="testJson" spellcheck="false" data-i18n-placeholder="test_json_placeholder"></textarea>
+    </div>
+    <div>
+      <div class="pane-header"><span data-i18n="results">Resultados</span></div>
+      <div id="validationResults"><span class="muted" data-i18n="edit_test_json">Edita el JSON de prueba para validar.</span></div>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="fileInput" accept=".json,application/json" style="display:none" />
+
+<!-- Help modal -->
+<div id="helpModal" class="modal-overlay" style="display:none">
+  <div class="modal modal-help">
+    <div class="modal-help-header">
+      <h2 data-i18n="help_title">Ayuda</h2>
+      <button id="helpClose" class="ghost icon">✕</button>
+    </div>
+    <div id="helpContent" class="help-content"></div>
+  </div>
+</div>
+
+<!-- Infer modal -->
+<div id="inferModal" class="modal-overlay" style="display:none">
+  <div class="modal">
+    <h2 data-i18n="infer_modal_title">Inferir schema desde JSON de ejemplo</h2>
+    <p class="hint" data-i18n="infer_modal_hint">Pega un JSON de ejemplo y se generará automáticamente un schema base.</p>
+    <textarea id="inferInput" placeholder='{"name":"Ana","age":30,"tags":["a","b"]}'></textarea>
+    <div class="actions">
+      <button id="inferCancel" class="ghost" data-i18n="btn_cancel">Cancelar</button>
+      <button id="inferGo" class="primary" data-i18n="btn_generate">Generar schema</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
