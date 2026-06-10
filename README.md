@@ -1,5 +1,7 @@
 # JSON Schema Editor & Validator
 
+> 🌐 **Demo en vivo:** [marcosesperon.github.io/json-schema-editor-validator](https://marcosesperon.github.io/json-schema-editor-validator/)
+
 Editor visual y validador de **JSON Schema (Draft-07)** 100% estático. Sin instalación, sin servidor, sin paso de build: abres `index.html` en el navegador y ya está.
 
 Pensado originalmente como herramienta interna para **LIBRA ERP**, pero es genérico y se puede usar con cualquier schema o documento JSON.
